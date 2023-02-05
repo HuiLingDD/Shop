@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "86356968467",
+    "project_id": "shop-c4b90",
+    "storage_bucket": "shop-c4b90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86356968467:android:91652ce8184bb5e0d66be6",
+        "android_client_info": {
+          "package_name": "com.hui.shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86356968467-dc69in6si8q9pb74mts793j2btj51uqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0R3NhjqK3AWR-vqY0OY-fU_Exjt2YDaA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86356968467-dc69in6si8q9pb74mts793j2btj51uqg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
