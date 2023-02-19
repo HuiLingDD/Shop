@@ -30,14 +30,11 @@ class MainActivity : AppCompatActivity() {
     var signup = false
     val auth = FirebaseAuth.getInstance()
     val TAG = MainActivity::class.java.simpleName
-    val function = listOf<String>("Camera",
-        "Invite friend",
+    val function = listOf<String>("Invite friend",
         "Parking",
-        "Download coupons",
         "News",
         "Movies",
-        "Bus",
-        "Maps")
+        "Bus")
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,10 +103,11 @@ class MainActivity : AppCompatActivity() {
     private fun functionClicked(holder: FunctionHolder, position: Int) {
         Log.d(TAG, "functionClicked: $position")
         when(position) {
-            1 -> startActivity(Intent(this, ContactActivity::class.java))
-            2 -> startActivity(Intent(this, ParkingActivity::class.java))
-            5 -> startActivity(Intent(this, MovieActivity::class.java))
-            6 -> startActivity(Intent(this, BusActivity::class.java))
+            0 -> startActivity(Intent(this, ContactActivity::class.java))
+            1 -> startActivity(Intent(this, ParkingActivity::class.java))
+            2 -> startActivity(Intent(this, NewsActivity::class.java))
+            3 -> startActivity(Intent(this, MovieActivity::class.java))
+            4 -> startActivity(Intent(this, BusActivity::class.java))
         }
     }
 
@@ -119,20 +117,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        if (auth.currentUser != null) {
 //        nickname.text = getNickname()
-        FirebaseDatabase.getInstance()
-            .getReference("users")
-            .child(auth.currentUser!!.uid)
-            .child("nickname")
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    nickname.text = snapshot.value as String
-                }
+            FirebaseDatabase.getInstance()
+                .getReference("users")
+                .child(auth.currentUser!!.uid)
+                .child("nickname")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.value != null)
+                           nickname.text = snapshot.value as String
+                    }
 
-                override fun onCancelled(error: DatabaseError) {
+                    override fun onCancelled(error: DatabaseError) {
 
-                }
-            })
+                    }
+               })
+        }
     }
 
     private fun authChange(auth: FirebaseAuth) {
